@@ -1,12 +1,9 @@
-import React from 'react';
-
 //路由部分
 import { useRoutes } from "react-router-dom"
-import routesList from './routes';
+import { loginRoutesList } from './routes';
 
 function App() {
-  const element = useRoutes(routesList)
-
+  const element = useRoutes(loginRoutesList)
   return (element);
 }
 

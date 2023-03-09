@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 // 图片引入
-import logo from "./images/logo.png";
+import logo from "../../assets/images/logo.png";
 
 // 样式引入
 import "./login.css";
