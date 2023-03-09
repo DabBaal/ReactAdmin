@@ -1,31 +1,46 @@
-import React from 'react'
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 // 图片引入
-import logo from "./images/logo.png"
+import logo from "./images/logo.png";
 
 // 样式引入
-import "./login.css"
+import "./login.css";
 
 //AntD引入
-import { Button, Form, Input, message } from 'antd';
+import { Button, Form, Input, message } from "antd";
 
 //ajax引入
-import { reqLogin } from '../../api';
+import { reqLogin } from "../../api";
 
+//存储引入
+import memoryUtils from "../../utils/memoryUtils";
+import storeUtils from "../../utils/storeUtils";
 
 export default function Login() {
   // 前台表单验证
   const navigate = useNavigate();
-  const onFinish = async (values) => {
-    const { username, password } = values
 
+  useEffect(() => {
+    //如果用户之前登录过，则会进行自动登录
+    const userInfo = memoryUtils.user;
+    if (userInfo && userInfo._id) {
+      navigate("/", { replace: true });
+    }
+  });
+
+  //用户点击Submit按钮后的处理函数
+  const onFinish = async (values) => {
+    const { username, password } = values;
     //对ajax返回结果进行判断
-    const response = await reqLogin(username, password)
+    const response = await reqLogin(username, password);
     if (response.status === 0) {
       message.success("登录成功");
+      // 将用户名和密码放到内存与local中
+      memoryUtils.user = response.data;
+      storeUtils.saveUser(response.data);
       //进行路由跳转
-      navigate("/", { replace: true })
+      navigate("/", { replace: true });
     } else {
       message.error("登录失败!  " + response.msg);
     }
@@ -34,8 +49,8 @@ export default function Login() {
   const onFinishFailed = (errorInfo) => {
     const errorsLine = errorInfo.errorFields.reduce((acc, cur) => {
       return `${acc}${cur.errors[0]}\n`;
-    }, "")
-    message.error(errorsLine)
+    }, "");
+    message.error(errorsLine);
   };
 
   return (
@@ -68,10 +83,10 @@ export default function Login() {
               name="username"
               rules={[
                 {
-                  type: 'string',
+                  type: "string",
                   required: true,
                   whitespace: true,
-                  message: '用户名为必填项',
+                  message: "用户名为必填项",
                 },
               ]}
             >
@@ -83,20 +98,20 @@ export default function Login() {
               name="password"
               rules={[
                 {
-                  type: 'string',
+                  type: "string",
                   required: true,
                   whitespace: true,
-                  message: '密码为必填项',
+                  message: "密码为必填项",
                 },
                 {
                   min: 4,
                   max: 12,
-                  message: "密码的长度必须在4-12位之间"
+                  message: "密码的长度必须在4-12位之间",
                 },
                 {
                   pattern: new RegExp(/^[a-zA-Z0-9_]+$/, "g"),
-                  message: "密码只能由字母、数字、字符串组成"
-                }
+                  message: "密码只能由字母、数字、字符串组成",
+                },
               ]}
               validateFirst="true"
             >
@@ -117,6 +132,5 @@ export default function Login() {
         </div>
       </section>
     </div>
-  )
+  );
 }
-
