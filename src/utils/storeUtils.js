@@ -12,7 +12,7 @@ const storeUtils = {
   },
 
   removeUser: () => {
-    store.set(USER_KEY);
+    store.remove(USER_KEY);
   },
 };
 

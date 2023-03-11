@@ -15,7 +15,7 @@ export default function ajax(url, data = {}, method = "get") {
         }
 
         promise.then(response => {
-            resolve(response.data)
+            resolve(response)
         }).catch(error => {
             message.error(error.message, 5)
         })

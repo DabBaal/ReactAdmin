@@ -2,8 +2,8 @@ import React from "react";
 import { Link, useLocation } from "react-router-dom";
 
 import "./left_nav.css";
-import logo from "../../../assets/images/logo.png";
-import menuList from "../../../config/menuConfig";
+import logo from "../../assets/images/logo.png";
+import menuList from "../../config/menuConfig";
 
 import { Menu } from "antd";
 

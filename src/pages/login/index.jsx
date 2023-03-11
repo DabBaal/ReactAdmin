@@ -25,7 +25,7 @@ export default function Login() {
     //如果用户之前登录过，则会进行自动登录
     const userInfo = memoryUtils.user;
     if (userInfo && userInfo._id) {
-      navigate("/", { replace: true });
+      navigate("/home", { replace: true });
     }
   });
 
@@ -33,14 +33,14 @@ export default function Login() {
   const onFinish = async (values) => {
     const { username, password } = values;
     //对ajax返回结果进行判断
-    const response = await reqLogin(username, password);
+    const response = (await reqLogin(username, password)).data;
     if (response.status === 0) {
       message.success("登录成功");
       // 将用户名和密码放到内存与local中
       memoryUtils.user = response.data;
       storeUtils.saveUser(response.data);
       //进行路由跳转
-      navigate("/", { replace: true });
+      navigate("/home", { replace: true });
     } else {
       message.error("登录失败!  " + response.msg);
     }

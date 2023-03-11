@@ -5,7 +5,7 @@ function getItem(label, key, icon, children, type, href) {
   }
   
   const menuList = [
-    getItem("首页", "1", <MailOutlined />, null, "item", "/"),
+    getItem("首页", "1", <MailOutlined />, null, "item", "/home"),
     getItem("商品","sub1",<MailOutlined />,[
         getItem("品类管理", "2", <MailOutlined />, null, "item", "/category"),
         getItem("商品管理", "3", <MailOutlined />, null, "item", "/product"),
