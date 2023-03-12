@@ -1,0 +1,7 @@
+.table_fix {
+  border: 1px solid #999999 !important;
+}
+
+div.ant-card-head{
+  border-bottom-color: green !important;
+}

@@ -29,15 +29,17 @@ export default function Admin() {
       <Sider>
         <LeftNav />
       </Sider>
-      <Layout>
-        <Header style={{ 
-        "backgroundColor": "white", 
-        "height": "80px", 
-        "padding": "0" 
+      <Layout style={{"backgroundColor":"#D3D3D3"}}>
+        <Header style={{
+          "backgroundColor": "white",
+          "height": "80px",
+          "padding": "0"
         }}>
           <HeaderDiv />
         </Header>
-        <Content style={{"border":"20px solid #D3D3D3"}}>{element}</Content>
+        <Content style={{
+          "padding": "30px",
+        }}>{element}</Content>
         <Footer style={{ "textAlign": "center", "color": "#aaa" }}>
           推荐使用谷歌浏览器,可以获得更佳页面操作体验
         </Footer>
