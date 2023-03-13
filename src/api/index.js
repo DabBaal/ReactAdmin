@@ -17,9 +17,9 @@ export const reqCategory = (parentId) => {
 }
 //添加分类
 export const reqAddCategory = (parentId, categoryName) => {
-    return ajax("/manage/category/add", { parentId, categoryName })
+    return ajax("/manage/category/add", { parentId, categoryName }, "post")
 }
 //更新分类
 export const reqUpdateCategory = (categoryId, categoryName) => {
-    return ajax("/manage/category/update", { categoryId, categoryName })
+    return ajax("/manage/category/update", { categoryId, categoryName }, "post")
 }
